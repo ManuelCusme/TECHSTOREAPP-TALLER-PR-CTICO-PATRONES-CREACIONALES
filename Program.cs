@@ -1,23 +1,22 @@
 ﻿using System;
-using TechStoreAppTaller.Patrones.A_FactoryMethod.Ejercicio01;
-using TechStoreAppTaller.Patrones.A_FactoryMethod.Ejercicio02;
+using TechStoreAppTaller.Patrones.A_FactoryMethod.Ejercicio03;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("--- EJERCICIO 1: Notificaciones (Email y SMS) ---");
-        NotificacionFactory factoryEmail = new EmailFactory();
-        INotificacion notiEmail = factoryEmail.CrearNotificacion();
-        notiEmail.Enviar("Tu pedido en TechStore ha sido registrado.");
+        Console.WriteLine("--- EJERCICIO 3: Factory Method para Reportes ---");
 
-        NotificacionFactory factorySms = new SmsFactory();
-        INotificacion notiSms = factorySms.CrearNotificacion();
-        notiSms.Enviar("Tu pedido está en camino.");
+        ReporteFactory factoryPdf = new ReportePdfFactory();
+        IReporte reportePdf = factoryPdf.CrearReporte();
+        reportePdf.Generar();
 
-        Console.WriteLine("\n--- EJERCICIO 2: Notificaciones (WhatsApp) ---");
-        NotificacionFactory factoryWhatsApp = new WhatsAppFactory();
-        INotificacion notiWhatsApp = factoryWhatsApp.CrearNotificacion();
-        notiWhatsApp.Enviar("Tu pedido ha sido entregado exitosamente.");
+        ReporteFactory factoryExcel = new ReporteExcelFactory();
+        IReporte reporteExcel = factoryExcel.CrearReporte();
+        reporteExcel.Generar();
+
+        ReporteFactory factoryCsv = new ReporteCsvFactory();
+        IReporte reporteCsv = factoryCsv.CrearReporte();
+        reporteCsv.Generar();
     }
 }

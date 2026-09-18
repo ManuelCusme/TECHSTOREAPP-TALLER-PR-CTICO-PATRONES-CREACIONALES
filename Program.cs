@@ -1,35 +1,36 @@
 ﻿using System;
-using TechStoreAppTaller.Patrones.B_Builder.Ejercicio05_06;
+using TechStoreAppTaller.Patrones.B_Builder.Ejercicio07;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("--- EJERCICIO 5 & 6: Builder para Pedidos (Mínimo vs Completo) ---");
+        Console.WriteLine("--- EJERCICIO 7: Builder para Computadoras (Oficina vs Gaming) ---");
 
-        // Ejercicio 6: Pedido Mínimo
-        Pedido pedidoMinimo = new PedidoBuilder()
-            .ConCliente("Ana")
-            .ConProducto("Mouse Inalámbrico")
-            .ConPrecio(25.00m)
+        // Computadora de Oficina
+        Computadora pcOficina = new ComputadoraBuilder()
+            .ConProcesador("Intel Core i3 13th Gen")
+            .ConRamGB(8)
+            .ConDiscoGB(256)
+            .ConTarjetaGrafica("Integrada Intel UHD")
+            .ConSistemaOperativo("Windows 11 Home")
+            .TieneWifi(true)
             .Construir();
 
-        Console.WriteLine("\n>>> PEDIDO MÍNIMO:");
-        pedidoMinimo.MostrarDetalle();
+        Console.WriteLine("\n>>> CONFIGURACIÓN DE OFICINA:");
+        pcOficina.MostrarDetalle();
 
-        // Ejercicio 5 & 6: Pedido Completo
-        Pedido pedidoCompleto = new PedidoBuilder()
-            .ConCliente("Ana")
-            .ConProducto("Laptop Gaming")
-            .ConPrecio(950.00m)
-            .ConDireccion("Ambato")
-            .ConTelefono("0999999999")
-            .ConObservacion("Entregar en horario de oficina")
-            .ConEntrega("EXPRESS")
-            .RequiereFactura(true)
+        // Computadora Gaming
+        Computadora pcGaming = new ComputadoraBuilder()
+            .ConProcesador("AMD Ryzen 7 7800X3D")
+            .ConRamGB(32)
+            .ConDiscoGB(2000)
+            .ConTarjetaGrafica("NVIDIA RTX 4080 Super")
+            .ConSistemaOperativo("Windows 11 Pro")
+            .TieneWifi(true)
             .Construir();
 
-        Console.WriteLine("\n>>> PEDIDO COMPLETO:");
-        pedidoCompleto.MostrarDetalle();
+        Console.WriteLine("\n>>> CONFIGURACIÓN GAMING:");
+        pcGaming.MostrarDetalle();
     }
 }

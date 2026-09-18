@@ -1,26 +1,24 @@
 ﻿using System;
-using TechStoreAppTaller.Patrones.C_Singleton.Ejercicio09_10;
+using TechStoreAppTaller.Patrones.C_Singleton.Ejercicio11;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("--- EJERCICIO 9 & 10: Singleton (Bitácora del Sistema) ---");
+        Console.WriteLine("--- EJERCICIO 11: Singleton (Configuración Global) ---");
 
-        // Ejercicio 9: Registrar mensajes desde diferentes puntos
-        Bitacora bitacora1 = Bitacora.Instancia;
-        bitacora1.Registrar("Usuario inició sesión en el sistema.");
-        bitacora1.Registrar("Se generó una consulta sobre catálogo.");
+        // Consulta desde el módulo de Facturación
+        ConfiguracionApp configFacturacion = ConfiguracionApp.Instancia;
+        configFacturacion.MostrarConfiguracion("Módulo Facturación");
 
-        Bitacora bitacora2 = Bitacora.Instancia;
-        bitacora2.Registrar("Se registró un nuevo pedido desde el módulo de ventas.");
+        // Consulta desde el módulo de Inventario
+        ConfiguracionApp configInventario = ConfiguracionApp.Instancia;
+        configInventario.MostrarConfiguracion("Módulo Inventario");
 
-        // Ejercicio 10: Comprobar que existe una sola instancia (retorna True)
-        Console.WriteLine("\n>>> COMPROBACIÓN DE INSTANCIA ÚNICA:");
-        bool sonIguales = ReferenceEquals(bitacora1, bitacora2);
-        Console.WriteLine($"ReferenceEquals(bitacora1, bitacora2): {sonIguales}");
+        // Demostración de modificación global compartida
+        Console.WriteLine("\n>>> Modificando moneda desde Facturación...");
+        configFacturacion.Moneda = "EUR";
 
-        // Mostrar todo el historial grabado en la misma instancia
-        bitacora1.MostrarHistorial();
+        configInventario.MostrarConfiguracion("Módulo Inventario (Verificación)");
     }
 }

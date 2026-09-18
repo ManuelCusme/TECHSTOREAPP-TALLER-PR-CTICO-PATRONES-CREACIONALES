@@ -1,24 +1,23 @@
 ﻿using System;
-using TechStoreAppTaller.Patrones.C_Singleton.Ejercicio11;
+using TechStoreAppTaller.Patrones.C_Singleton.Ejercicio12;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("--- EJERCICIO 11: Singleton (Configuración Global) ---");
+        Console.WriteLine("--- EJERCICIO 12: Singleton (Contador Global de Pedidos) ---");
 
-        // Consulta desde el módulo de Facturación
-        ConfiguracionApp configFacturacion = ConfiguracionApp.Instancia;
-        configFacturacion.MostrarConfiguracion("Módulo Facturación");
+        ContadorPedidos contador = ContadorPedidos.Instancia;
 
-        // Consulta desde el módulo de Inventario
-        ConfiguracionApp configInventario = ConfiguracionApp.Instancia;
-        configInventario.MostrarConfiguracion("Módulo Inventario");
+        Console.WriteLine("\n>>> Registrando primer pedido...");
+        contador.Incrementar();
 
-        // Demostración de modificación global compartida
-        Console.WriteLine("\n>>> Modificando moneda desde Facturación...");
-        configFacturacion.Moneda = "EUR";
+        Console.WriteLine("\n>>> Registrando segundo pedido...");
+        contador.Incrementar();
 
-        configInventario.MostrarConfiguracion("Módulo Inventario (Verificación)");
+        Console.WriteLine("\n>>> Registrando tercer pedido...");
+        contador.Incrementar();
+
+        Console.WriteLine($"\nTotal final de pedidos contados: {contador.Total}");
     }
 }

@@ -1,34 +1,26 @@
 ﻿using System;
-using TechStoreAppTaller.Patrones.B_Builder.Ejercicio08;
+using TechStoreAppTaller.Patrones.C_Singleton.Ejercicio09_10;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("--- EJERCICIO 8: Builder para Paquete de Entrega ---");
+        Console.WriteLine("--- EJERCICIO 9 & 10: Singleton (Bitácora del Sistema) ---");
 
-        // Paquete Normal
-        PaqueteEntrega paqueteNormal = new PaqueteEntregaBuilder()
-            .ConTipoCaja("Cartón Estándar")
-            .ConProteccion("Burbuja Básica")
-            .ConSeguro(false)
-            .ConEtiquetaFragil(false)
-            .ConObservacion("Manejo regular de paquetería")
-            .Construir();
+        // Ejercicio 9: Registrar mensajes desde diferentes puntos
+        Bitacora bitacora1 = Bitacora.Instancia;
+        bitacora1.Registrar("Usuario inició sesión en el sistema.");
+        bitacora1.Registrar("Se generó una consulta sobre catálogo.");
 
-        Console.WriteLine("\n>>> PAQUETE NORMAL:");
-        paqueteNormal.MostrarDetalle();
+        Bitacora bitacora2 = Bitacora.Instancia;
+        bitacora2.Registrar("Se registró un nuevo pedido desde el módulo de ventas.");
 
-        // Paquete Premium
-        PaqueteEntrega paquetePremium = new PaqueteEntregaBuilder()
-            .ConTipoCaja("Caja de Madera Reforzada")
-            .ConProteccion("Espuma de Alta Densidad")
-            .ConSeguro(true)
-            .ConEtiquetaFragil(true)
-            .ConObservacion("Entrega prioritaria delicada")
-            .Construir();
+        // Ejercicio 10: Comprobar que existe una sola instancia (retorna True)
+        Console.WriteLine("\n>>> COMPROBACIÓN DE INSTANCIA ÚNICA:");
+        bool sonIguales = ReferenceEquals(bitacora1, bitacora2);
+        Console.WriteLine($"ReferenceEquals(bitacora1, bitacora2): {sonIguales}");
 
-        Console.WriteLine("\n>>> PAQUETE PREMIUM:");
-        paquetePremium.MostrarDetalle();
+        // Mostrar todo el historial grabado en la misma instancia
+        bitacora1.MostrarHistorial();
     }
 }

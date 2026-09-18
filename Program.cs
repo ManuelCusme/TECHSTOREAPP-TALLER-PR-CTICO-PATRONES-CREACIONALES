@@ -1,25 +1,25 @@
 ﻿using System;
-using TechStoreAppTaller.Patrones.D_AbstractFactory.Ejercicio15;
+using TechStoreAppTaller.Patrones.D_AbstractFactory.Ejercicio16;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("--- EJERCICIO 15: Abstract Factory (Proveedores Dell vs Lenovo) ---");
+        Console.WriteLine("--- EJERCICIO 16: Abstract Factory (Infraestructura Cloud AWS vs Azure) ---");
 
-        Console.WriteLine("\n>>> EQUIPAMIENTO FAMILIA DELL:");
-        ProcesarEquipamiento(new DellFactory());
+        Console.WriteLine("\n>>> INFRAESTRUCTURA AWS:");
+        ProcesarCloud(new AwsFactory());
 
-        Console.WriteLine("\n>>> EQUIPAMIENTO FAMILIA LENOVO:");
-        ProcesarEquipamiento(new LenovoFactory());
+        Console.WriteLine("\n>>> INFRAESTRUCTURA AZURE:");
+        ProcesarCloud(new AzureFactory());
     }
 
-    static void ProcesarEquipamiento(IProveedorFactory factory)
+    static void ProcesarCloud(ICloudFactory factory)
     {
-        ILaptop laptop = factory.CrearLaptop();
-        IMonitor monitor = factory.CrearMonitor();
+        IStorage storage = factory.CrearStorage();
+        IQueue queue = factory.CrearQueue();
 
-        laptop.MostrarDetalle();
-        monitor.MostrarDetalle();
+        storage.Guardar();
+        queue.Publicar();
     }
 }

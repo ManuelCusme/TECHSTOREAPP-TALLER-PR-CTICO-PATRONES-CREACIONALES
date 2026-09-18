@@ -1,23 +1,35 @@
 ﻿using System;
-using TechStoreAppTaller.Patrones.A_FactoryMethod.Ejercicio04;
+using TechStoreAppTaller.Patrones.B_Builder.Ejercicio05_06;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("--- EJERCICIO 4: Factory Method para Métodos de Pago ---");
-        decimal totalCompra = 450.50m;
+        Console.WriteLine("--- EJERCICIO 5 & 6: Builder para Pedidos (Mínimo vs Completo) ---");
 
-        PagoFactory factoryTarjeta = new PagoTarjetaFactory();
-        IPago pagoTarjeta = factoryTarjeta.CrearPago();
-        pagoTarjeta.Procesar(totalCompra);
+        // Ejercicio 6: Pedido Mínimo
+        Pedido pedidoMinimo = new PedidoBuilder()
+            .ConCliente("Ana")
+            .ConProducto("Mouse Inalámbrico")
+            .ConPrecio(25.00m)
+            .Construir();
 
-        PagoFactory factoryTransferencia = new PagoTransferenciaFactory();
-        IPago pagoTransferencia = factoryTransferencia.CrearPago();
-        pagoTransferencia.Procesar(totalCompra);
+        Console.WriteLine("\n>>> PEDIDO MÍNIMO:");
+        pedidoMinimo.MostrarDetalle();
 
-        PagoFactory factoryEfectivo = new PagoEfectivoFactory();
-        IPago pagoEfectivo = factoryEfectivo.CrearPago();
-        pagoEfectivo.Procesar(totalCompra);
+        // Ejercicio 5 & 6: Pedido Completo
+        Pedido pedidoCompleto = new PedidoBuilder()
+            .ConCliente("Ana")
+            .ConProducto("Laptop Gaming")
+            .ConPrecio(950.00m)
+            .ConDireccion("Ambato")
+            .ConTelefono("0999999999")
+            .ConObservacion("Entregar en horario de oficina")
+            .ConEntrega("EXPRESS")
+            .RequiereFactura(true)
+            .Construir();
+
+        Console.WriteLine("\n>>> PEDIDO COMPLETO:");
+        pedidoCompleto.MostrarDetalle();
     }
 }

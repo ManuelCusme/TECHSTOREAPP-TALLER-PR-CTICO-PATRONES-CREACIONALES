@@ -1,28 +1,25 @@
 ﻿using System;
-using TechStoreAppTaller.Patrones.D_AbstractFactory.Ejercicio13_14;
+using TechStoreAppTaller.Patrones.D_AbstractFactory.Ejercicio15;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("--- EJERCICIO 13 & 14: Abstract Factory (Familias de Venta) ---");
+        Console.WriteLine("--- EJERCICIO 15: Abstract Factory (Proveedores Dell vs Lenovo) ---");
 
-        Console.WriteLine("\n>>> FAMILIA NORMAL (Ejercicio 13):");
-        ProcesarVenta(new VentaNormalFactory());
+        Console.WriteLine("\n>>> EQUIPAMIENTO FAMILIA DELL:");
+        ProcesarEquipamiento(new DellFactory());
 
-        Console.WriteLine("\n>>> FAMILIA PREMIUM (Ejercicio 13):");
-        ProcesarVenta(new VentaPremiumFactory());
-
-        Console.WriteLine("\n>>> FAMILIA CORPORATIVA (Ejercicio 14):");
-        ProcesarVenta(new VentaCorporativaFactory());
+        Console.WriteLine("\n>>> EQUIPAMIENTO FAMILIA LENOVO:");
+        ProcesarEquipamiento(new LenovoFactory());
     }
 
-    static void ProcesarVenta(IVentaFactory factory)
+    static void ProcesarEquipamiento(IProveedorFactory factory)
     {
-        IEntrega entrega = factory.CrearEntrega();
-        IEmpaque empaque = factory.CrearEmpaque();
+        ILaptop laptop = factory.CrearLaptop();
+        IMonitor monitor = factory.CrearMonitor();
 
-        entrega.Procesar();
-        empaque.Empacar();
+        laptop.MostrarDetalle();
+        monitor.MostrarDetalle();
     }
 }

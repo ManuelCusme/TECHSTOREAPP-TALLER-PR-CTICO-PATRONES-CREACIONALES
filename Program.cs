@@ -1,22 +1,23 @@
 ﻿using System;
-using TechStoreAppTaller.Patrones.A_FactoryMethod.Ejercicio03;
+using TechStoreAppTaller.Patrones.A_FactoryMethod.Ejercicio04;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("--- EJERCICIO 3: Factory Method para Reportes ---");
+        Console.WriteLine("--- EJERCICIO 4: Factory Method para Métodos de Pago ---");
+        decimal totalCompra = 450.50m;
 
-        ReporteFactory factoryPdf = new ReportePdfFactory();
-        IReporte reportePdf = factoryPdf.CrearReporte();
-        reportePdf.Generar();
+        PagoFactory factoryTarjeta = new PagoTarjetaFactory();
+        IPago pagoTarjeta = factoryTarjeta.CrearPago();
+        pagoTarjeta.Procesar(totalCompra);
 
-        ReporteFactory factoryExcel = new ReporteExcelFactory();
-        IReporte reporteExcel = factoryExcel.CrearReporte();
-        reporteExcel.Generar();
+        PagoFactory factoryTransferencia = new PagoTransferenciaFactory();
+        IPago pagoTransferencia = factoryTransferencia.CrearPago();
+        pagoTransferencia.Procesar(totalCompra);
 
-        ReporteFactory factoryCsv = new ReporteCsvFactory();
-        IReporte reporteCsv = factoryCsv.CrearReporte();
-        reporteCsv.Generar();
+        PagoFactory factoryEfectivo = new PagoEfectivoFactory();
+        IPago pagoEfectivo = factoryEfectivo.CrearPago();
+        pagoEfectivo.Procesar(totalCompra);
     }
 }

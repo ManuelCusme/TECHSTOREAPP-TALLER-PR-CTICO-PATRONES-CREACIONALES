@@ -1,23 +1,28 @@
 ﻿using System;
-using TechStoreAppTaller.Patrones.C_Singleton.Ejercicio12;
+using TechStoreAppTaller.Patrones.D_AbstractFactory.Ejercicio13_14;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("--- EJERCICIO 12: Singleton (Contador Global de Pedidos) ---");
+        Console.WriteLine("--- EJERCICIO 13 & 14: Abstract Factory (Familias de Venta) ---");
 
-        ContadorPedidos contador = ContadorPedidos.Instancia;
+        Console.WriteLine("\n>>> FAMILIA NORMAL (Ejercicio 13):");
+        ProcesarVenta(new VentaNormalFactory());
 
-        Console.WriteLine("\n>>> Registrando primer pedido...");
-        contador.Incrementar();
+        Console.WriteLine("\n>>> FAMILIA PREMIUM (Ejercicio 13):");
+        ProcesarVenta(new VentaPremiumFactory());
 
-        Console.WriteLine("\n>>> Registrando segundo pedido...");
-        contador.Incrementar();
+        Console.WriteLine("\n>>> FAMILIA CORPORATIVA (Ejercicio 14):");
+        ProcesarVenta(new VentaCorporativaFactory());
+    }
 
-        Console.WriteLine("\n>>> Registrando tercer pedido...");
-        contador.Incrementar();
+    static void ProcesarVenta(IVentaFactory factory)
+    {
+        IEntrega entrega = factory.CrearEntrega();
+        IEmpaque empaque = factory.CrearEmpaque();
 
-        Console.WriteLine($"\nTotal final de pedidos contados: {contador.Total}");
+        entrega.Procesar();
+        empaque.Empacar();
     }
 }
